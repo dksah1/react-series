@@ -52,13 +52,29 @@ const Login = () => {
         <form onSubmit={handleSubmit(login)}
          className='mt-8'>
             <div className="space-y-5">
-                <input 
+                <Input 
                 label ="Email: "
                 placeholder='Enter your Email'
                 type='email'
-
-                {}
+                {...register("email",{
+                    required:true,
+                    validate: {
+                        matchPatern:(value) =>/^(?:(?:[\w`~!#$%^&*\-=+;:{}'|,?\/]+(?:(?:\.(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|,?\/\.()<>\[\] @]|\\"|\\\\)*"|[\w`~!#$%^&*\-=+;:{}'|,?\/]+))*\.[\w`~!#$%^&*\-=+;:{}'|,?\/]+)?)|(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|,?\/\.()<>\[\] @]|\\"|\\\\)+"))@(?:[a-zA-Z\d\-]+(?:\.[a-zA-Z\d\-]+)*|\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])$/gm.test(value) || " Email address must be valid address ",
+                    }
+                })}
                 />
+                <Input
+                label = "Password: "
+                type = "password"
+                placeholder= 'Enter your password'
+                {...register("password",{
+                    required: true,
+                })}
+                />
+                <Button
+                type="submit"
+                className="w-full"
+                >Sign in</Button>
             </div>
         </form>
     </div>
